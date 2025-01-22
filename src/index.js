@@ -19,8 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));    
 connectDB()
     .then(() => {
-        app.listen(3001, () => {
-            console.log(`Server is running on port`)
+        app.listen(PORT || 3001, () => {
+            console.log(`Server is running on port ${PORT}`)
         })
     })
     .catch((error) => {
