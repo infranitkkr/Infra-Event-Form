@@ -7,10 +7,6 @@ const mixcreteSchema = new Schema({
         type: String,
         required: true
     },
-    teamLeader:{
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,
@@ -21,6 +17,33 @@ const mixcreteSchema = new Schema({
         required: true,
         unique: true
     },
+    teamLeader:{
+        type: String,
+        required: true
+    },
+    teamLeaderRollNo:{
+        type: Number,
+        required: true,
+        unique: true
+    },
+    teamMember2:{
+        type: String,
+        required: true
+    },
+    teamMember2RollNo:{
+        type: Number,
+        required: true,
+        unique: true
+    },
+    teamMember3:{
+        type: String,
+        required: true
+    },
+    teamMember3RollNo:{
+        type: Number,
+        required: true,
+        unique: true
+    }
 
 });
 
