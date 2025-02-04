@@ -36,3 +36,7 @@ const buildEmAll =  new Schema({
         unique: true
     },
 })
+
+const BuildEmAll = mongoose.model('BuildEmAll', buildEmAll);
+
+export default BuildEmAll;

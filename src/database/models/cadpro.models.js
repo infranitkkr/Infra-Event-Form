@@ -43,3 +43,7 @@ const cadproSchema = new Schema({
         unique: true
     }
 });
+
+const CADPro = mongoose.model('CADPro', cadproSchema)
+
+export default CADPro
