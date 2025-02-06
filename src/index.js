@@ -2,7 +2,13 @@ import express from "express"
 import connectDB from './database/db.js';
 import cors from "cors"
 import dotenv from "dotenv";
-import Mixcrete from "./database/models/mixcrete.models.js";
+import Mixcrete from "./database/models/mixcrete.models.js"
+import BuildEmAll from "./database/models/buildemall.models.js"
+import CADPro from "./database/models/cadpro.models.js";
+import GoGate from "./database/models/gogate.models.js";
+import Planning from "./database/models/planning.models.js";
+
+import Cvquiz from "./database/models/cvquiz.models.js"
 dotenv.config({
     path: './env'
 })
@@ -34,14 +40,66 @@ app.get('/test', (req, res) => {
 app.post('/submit/mixcrete', async (req, res) => {
     try {
         const formData = new Mixcrete(req.body);
-        console.log(req.body.teamLeader);
-        console.log(req.body.teamName);
-        console.log(req.body.email);
-        console.log(req.body.number);
         await formData.save();
         res.status(200).send({ message: 'Form submitted successfully' });
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: 'Error saving form data', error });
     }
-});
+})
+app.post('/submit/build-em-all', async (req, res) => {
+    try {
+        const formData = new BuildEmAll(req.body);
+        await formData.save();
+        res.status(200).send({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Error saving form data', error });
+    }
+}
+)
+app.post('/submit/cadpro', async (req, res) => {
+    try {
+        const formData = new CADPro(req.body);
+        await formData.save();
+        res.status(200).send({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Error saving form data', error });
+    }
+}
+)
+app.post('/submit/cvquiz', async (req, res) => {
+    try {
+        const formData = new Cvquiz(req.body);
+        await formData.save();
+        res.status(200).send({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Error saving form data', error });
+    }
+}
+)
+app.post('/submit/gogate', async (req, res) => {
+    try {
+        const formData = new GoGate(req.body);
+        await formData.save();
+        res.status(200).send({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Error saving form data', error });
+    }
+}
+)
+
+app.post('/submit/planning', async (req, res) => {
+    try {
+        const formData = new Planning(req.body);
+        await formData.save();
+        res.status(200).send({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Error saving form data', error });
+    }
+}
+)

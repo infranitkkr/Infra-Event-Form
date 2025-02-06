@@ -12,6 +12,8 @@ const options = {
 
 const connectDB = async () => {
     try {
+
+
         const connectionInstance = await mongoose.connect(MONGODBURI, options)
         console.log(`MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
     }
