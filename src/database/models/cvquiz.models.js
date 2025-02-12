@@ -8,7 +8,7 @@ const cvquizSchema = new Schema({
         required: true
     },
     rollNo:{
-        type: number,
+        type: Number,
         required: true,
         unique: true
     },
