@@ -8,6 +8,7 @@ import CADPro from "./database/models/cadpro.models.js";
 import GoGate from "./database/models/gogate.models.js";
 import Planning from "./database/models/planning.models.js";
 import Cvquiz from "./database/models/cvquiz.models.js"
+
 dotenv.config({
     path: './env'
 })
