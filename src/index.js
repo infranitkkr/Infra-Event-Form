@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 connectDB()
     .then(() => {
@@ -36,6 +37,13 @@ connectDB()
 app.get('/test', (req, res) => {
     res.send('Hello World2')
 })
+
+const logRequest = (req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+};
+
+app.use(logRequest);
 
 app.post('/submit/mixcrete', async (req, res) => {
     try {
@@ -107,3 +115,29 @@ app.post('/submit/planning', async (req, res) => {
     }
 }
 )
+
+app.post('/api/sendMail', (req, res) => {
+    const { name, phone, message } = req.body;
+  
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'your-email@gmail.com',  // Replace with your email
+        pass: 'your-email-password',   // Replace with your email password
+      },
+    });
+  
+    const mailOptions = {
+      from: 'your-email@gmail.com',
+      to: 'your-email@gmail.com',
+      subject: 'New Contact Form Submission',
+      text: `Name: ${name}\nPhone: ${phone}\nMessage: ${message}`,
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).send(error.toString());
+      }
+      res.status(200).send('Message sent successfully!');
+    });
+  });
