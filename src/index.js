@@ -103,3 +103,15 @@ app.post('/submit/planning', async (req, res) => {
     }
 }
 )
+
+app.post('/submit/opinion', async (req, res) => {
+    try {
+        const formData = new Opinion(req.body);
+        await formData.save();
+        res.status(200).send({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Error saving form data', error });
+    }
+}
+)
