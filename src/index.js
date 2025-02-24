@@ -9,6 +9,7 @@ import CADPro from "./database/models/cadpro.models.js";
 import GoGate from "./database/models/gogate.models.js";
 import Planning from "./database/models/planning.models.js";
 import Cvquiz from "./database/models/cvquiz.models.js"
+import Opinion from "./database/models/opinion.models.js";
 
 dotenv.config({
     path: './env'
@@ -124,6 +125,7 @@ app.post('/submit/planning', async (req, res) => {
 )
 
 app.post('/submit/opinion', async (req, res) => {
+    print(req.body)
     try {
         const formData = new Opinion(req.body);
         await formData.save();
