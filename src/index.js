@@ -2,6 +2,7 @@ import express from "express"
 import connectDB from './database/db.js';
 import cors from "cors"
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 import Mixcrete from "./database/models/mixcrete.models.js";
 import BuildEmAll from "./database/models/buildemall.models.js"
 import CADPro from "./database/models/cadpro.models.js";
@@ -12,7 +13,7 @@ import Cvquiz from "./database/models/cvquiz.models.js"
 dotenv.config({
     path: './env'
 })
-
+ 
 const app = express();
 const PORT = process.env.PORT
 
@@ -65,8 +66,14 @@ app.post('/submit/build-em-all', async (req, res) => {
         await formData.save();
         res.status(200).send({ message: 'Form submitted successfully' });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Error saving form data', error });
+        if(error.code===11000){
+res.status(400).json({message:'User already exists'})
+        }
+else{
+
+res.status(500).json({message:'Server Error'})
+
+}
     }
 }
 )
@@ -107,6 +114,18 @@ app.post('/submit/gogate', async (req, res) => {
 app.post('/submit/planning', async (req, res) => {
     try {
         const formData = new Planning(req.body);
+        await formData.save();
+        res.status(200).send({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Error saving form data', error });
+    }
+}
+)
+
+app.post('/submit/opinion', async (req, res) => {
+    try {
+        const formData = new Opinion(req.body);
         await formData.save();
         res.status(200).send({ message: 'Form submitted successfully' });
     } catch (error) {
