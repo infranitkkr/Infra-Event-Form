@@ -125,7 +125,6 @@ app.post('/submit/planning', async (req, res) => {
 )
 
 app.post('/submit/opinion', async (req, res) => {
-    print(req.body)
     try {
         const formData = new Opinion(req.body);
         await formData.save();
