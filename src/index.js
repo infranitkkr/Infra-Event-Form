@@ -39,70 +39,84 @@ app.get('/test', (req, res) => {
 
 app.post('/submit/mixcrete', async (req, res) => {
     try {
-        const formData = new Mixcrete(req.body);
-        await formData.save();
-        res.status(200).send({ message: 'Form submitted successfully' });
+      const newEntry = new Mixcrete(req.body);
+      await newEntry.save();
+      res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Error saving form data', error });
+      if (error.code === 11000) { // duplicate key error
+        res.status(400).json({ message: 'User already exists' });
+      } else {
+        res.status(500).json({ message: 'Server error' });
+      }
     }
-})
+  });
 app.post('/submit/build-em-all', async (req, res) => {
     try {
-        const formData = new BuildEmAll(req.body);
-        await formData.save();
-        res.status(200).send({ message: 'Form submitted successfully' });
+      const newEntry = new BuildEmAll(req.body);
+      await newEntry.save();
+      res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Error saving form data', error });
+      if (error.code === 11000) { // duplicate key error
+        res.status(400).json({ message: 'User already exists' });
+      } else {
+        res.status(500).json({ message: 'Server error' });
+      }
     }
-}
-)
-app.post('/submit/cadpro', async (req, res) => {
+  });
+  app.post('/submit/cadpro', async (req, res) => {
+    console.log(res.body);
     try {
-        const formData = new CADPro(req.body);
-        await formData.save();
-        res.status(200).send({ message: 'Form submitted successfully' });
+      const newEntry = new CADPro(req.body);
+      await newEntry.save();
+      res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Error saving form data', error });
+      if (error.code === 11000) { // duplicate key error
+        res.status(400).json({ message: 'User already exists' });
+      } else {
+        res.status(500).json({ message: 'Server error' });
+      }
     }
-}
-)
-app.post('/submit/cvquiz', async (req, res) => {
+  });
+  app.post('/submit/cvquiz', async (req, res) => {
     try {
-        const formData = new Cvquiz(req.body);
-        await formData.save();
-        res.status(200).send({ message: 'Form submitted successfully' });
+      const newEntry = new Cvquiz(req.body);
+      await newEntry.save();
+      res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Error saving form data', error });
+      if (error.code === 11000) { // duplicate key error
+        res.status(400).json({ message: 'User already exists' });
+      } else {
+        res.status(500).json({ message: 'Server error' });
+      }
     }
-}
-)
-app.post('/submit/gogate', async (req, res) => {
+  });
+  app.post('/submit/gogate', async (req, res) => {
     try {
-        const formData = new GoGate(req.body);
-        await formData.save();
-        res.status(200).send({ message: 'Form submitted successfully' });
+      const newEntry = new GoGate(req.body);
+      await newEntry.save();
+      res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Error saving form data', error });
+      if (error.code === 11000) { // duplicate key error
+        res.status(400).json({ message: 'User already exists' });
+      } else {
+        res.status(500).json({ message: 'Server error' });
+      }
     }
-}
-)
+  });
 
-app.post('/submit/planning', async (req, res) => {
+  app.post('/submit/planning', async (req, res) => {
     try {
-        const formData = new Planning(req.body);
-        await formData.save();
-        res.status(200).send({ message: 'Form submitted successfully' });
+      const newEntry = new Planning(req.body);
+      await newEntry.save();
+      res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: 'Error saving form data', error });
+      if (error.code === 11000) { // duplicate key error
+        res.status(400).json({ message: 'User already exists' });
+      } else {
+        res.status(500).json({ message: 'Server error' });
+      }
     }
-}
-)
+  });
 
 app.post('/submit/opinion', async (req, res) => {
     try {
